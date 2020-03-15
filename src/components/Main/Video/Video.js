@@ -1,7 +1,4 @@
 import React from 'react';
-import * as blazeface from '@tensorflow-models/blazeface';
-import * as tf from '@tensorflow/tfjs-core';
-import brain from 'brain.js';
 import {
   VideoOutput,
   PointsOutput,

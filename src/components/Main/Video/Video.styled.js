@@ -2,9 +2,6 @@ import styled from 'styled-components';
 
 
 export const VideoOutput = styled.video`
-  position: absolute;
-  top: 0;
-  left: 0;
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
   width: auto;
@@ -14,6 +11,6 @@ export const VideoOutput = styled.video`
 
 export const PointsOutput = styled.canvas`
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 10px;
+  left: 10px;
 `;

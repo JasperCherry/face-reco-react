@@ -1,4 +1,4 @@
-export const renderPrediction = async ({ video, canvas, ctx, model }) => {
+export const renderPrediction = async ({ video, canvas, ctx, model, state }) => {
   const returnTensors = false;
   const flipHorizontal = true;
   const annotateBoxes = true;
@@ -9,14 +9,6 @@ export const renderPrediction = async ({ video, canvas, ctx, model }) => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     for (let i = 0; i < predictions.length; i++) {
-      if (returnTensors) {
-        predictions[i].topLeft = predictions[i].topLeft.arraySync();
-        predictions[i].bottomRight = predictions[i].bottomRight.arraySync();
-        if (annotateBoxes) {
-          predictions[i].landmarks = predictions[i].landmarks.arraySync();
-        }
-      }
-
       if (annotateBoxes) {
         const landmarks = predictions[i].landmarks;
         const landmarksNamed = {};
@@ -50,9 +42,20 @@ export const renderPrediction = async ({ video, canvas, ctx, model }) => {
         }
       }
 
-      console.log({ predictions });
+      if (state.recordingFaceOne) {
+        state.faceOneData.push(predictions[i].landmarksNamed);
+      }
+
+      if (state.recordingFaceTwo) {
+        state.faceTwoData.push(predictions[i].landmarksNamed);
+      }
+
+      if (state.recordingTestData) {
+        state.testData = predictions[i].landmarksNamed;
+        state.recordingTestData = false;
+      }
     }
   }
 
-  requestAnimationFrame(() => renderPrediction({ video, canvas, ctx, model }));
+  requestAnimationFrame(() => renderPrediction({ video, canvas, ctx, model, state }));
 };
