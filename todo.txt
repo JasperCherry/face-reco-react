@@ -1,3 +1,5 @@
-setup basic video
+setup canvas
 
-remote repo
+setup tfjs model
+
+do existing func on old version

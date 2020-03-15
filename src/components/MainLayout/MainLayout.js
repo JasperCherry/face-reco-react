@@ -1,15 +1,15 @@
-import React from 'react';
-import {
-  Title,
-} from './MainLayout.styled';
+import React, { Component } from 'react';
+import { Video } from './Video';
 
 
-const MainLayout = () => {
-  return (
-    <div>
-      <Title>MainLayout Comp</Title>
-    </div>
-  );
+class MainLayout extends Component {
+  render() {
+    return (
+      <div>
+        <Video />
+      </div>
+    );
+  }
 }
 
 
