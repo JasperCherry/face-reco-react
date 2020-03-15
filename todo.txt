@@ -1,5 +1,4 @@
-setup canvas
+show predictions
 
-setup tfjs model
 
 do existing func on old version

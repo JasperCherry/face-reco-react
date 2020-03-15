@@ -1,5 +1,5 @@
 export const setupCamera = async () => {
-  const video = document.getElementById('video');
+  const video = document.getElementById('videoOutput');
 
   const stream = await navigator.mediaDevices.getUserMedia({
     'audio': false,
