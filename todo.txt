@@ -1,5 +1,3 @@
 
-clear up code
-
 
 do existing func on old version
