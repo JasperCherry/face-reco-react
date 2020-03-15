@@ -1,7 +1,9 @@
 import React from 'react';
 import * as blazeface from '@tensorflow-models/blazeface';
+import * as tf from '@tensorflow/tfjs-core';
 import {
   setupCamera,
+  renderPrediction,
 } from './func';
 import {
   VideoOutput,
@@ -11,6 +13,8 @@ import {
 
 class Video extends React.Component {
   componentDidMount = async () => {
+    await tf.setBackend('webgl');
+
     const video = await setupCamera();
     video.play();
 
@@ -22,11 +26,13 @@ class Video extends React.Component {
     const canvas = document.getElementById('pointsOutput');
     canvas.width = videoWidth;
     canvas.height = videoHeight;
+
     const ctx = canvas.getContext('2d');
     ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
 
     const model = await blazeface.load();
-    console.log(model);
+
+    renderPrediction({ video, canvas, ctx, model });
   }
 
 

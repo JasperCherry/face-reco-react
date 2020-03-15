@@ -1,4 +1,6 @@
-show predictions
+install brainjs
+
+clear up code
 
 
 do existing func on old version
