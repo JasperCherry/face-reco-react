@@ -1,11 +1,11 @@
 import React from 'react';
-import { MainLayout } from './components/MainLayout';
+import { Main } from './components/Main';
 
 
 const App = () => {
   return (
     <div>
-      <MainLayout />
+      <Main />
     </div>
   );
 }
