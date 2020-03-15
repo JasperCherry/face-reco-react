@@ -1,6 +1,7 @@
 import React from 'react';
 import * as blazeface from '@tensorflow-models/blazeface';
 import * as tf from '@tensorflow/tfjs-core';
+import brain from 'brain.js';
 import {
   setupCamera,
   renderPrediction,
@@ -13,6 +14,8 @@ import {
 
 class Video extends React.Component {
   componentDidMount = async () => {
+    console.log(brain); // temp
+
     await tf.setBackend('webgl');
 
     const video = await setupCamera();
