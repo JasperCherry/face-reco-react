@@ -9,7 +9,6 @@ import {
   getCanvas,
   getCtx,
   wait,
-  recognizeCurrentFace,
   trainNeuralNetwork,
 } from './func';
 import {
