@@ -1,4 +1,7 @@
-export const renderPrediction = async ({ video, canvas, ctx, model, state }) => {
+import { recognizeCurrentFace } from './index';
+
+
+export const renderPrediction = async ({ video, canvas, ctx, model, state, net }) => {
   const returnTensors = false;
   const flipHorizontal = true;
   const annotateBoxes = true;
@@ -51,11 +54,12 @@ export const renderPrediction = async ({ video, canvas, ctx, model, state }) => 
       }
 
       if (state.recordingTestData) {
-        state.testData = predictions[i].landmarksNamed;
         state.recordingTestData = false;
+        state.testData = predictions[i].landmarksNamed;
+        recognizeCurrentFace({ state, net });
       }
     }
   }
 
-  requestAnimationFrame(() => renderPrediction({ video, canvas, ctx, model, state }));
+  requestAnimationFrame(() => renderPrediction({ video, canvas, ctx, model, state, net }));
 };
