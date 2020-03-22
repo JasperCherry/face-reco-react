@@ -8,7 +8,6 @@ import {
   renderPrediction,
   getCanvas,
   getCtx,
-  wait,
   trainNeuralNetwork,
 } from './func';
 import {
@@ -17,7 +16,14 @@ import {
 } from './Main.styled';
 
 
-const net = new brain.NeuralNetwork();
+const config = {
+  hiddenLayers: [20, 20],
+  activation: 'sigmoid',
+}
+
+
+const net = new brain.NeuralNetwork(config);
+
 
 const state = {
   faceOneData: [],
@@ -46,17 +52,11 @@ class Main extends Component {
 
   recordFaceOneData = async () => {
     state.recordingFaceOne = true;
-    await wait(3000);
-    state.recordingFaceOne = false;
-    alert('Finished recording face one');
   }
 
 
   recordFaceTwoData = async () => {
     state.recordingFaceTwo = true;
-    await wait(3000);
-    state.recordingFaceTwo = false;
-    alert('Finished recording face two');
   }
 
 
@@ -70,8 +70,8 @@ class Main extends Component {
       <Layout>
         <Video />
         <div>
-          <Button onClick={this.recordFaceOneData}>{`Record face One (3sec)`}</Button>
-          <Button onClick={this.recordFaceTwoData}>{`Record face Two (3sec)`}</Button>
+          <Button onClick={this.recordFaceOneData}>{`Record face One`}</Button>
+          <Button onClick={this.recordFaceTwoData}>{`Record face Two`}</Button>
           <Button onClick={this.showRecordedData}>{`Show recorded data`}</Button>
         </div>
         <div>

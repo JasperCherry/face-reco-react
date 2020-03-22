@@ -19,5 +19,10 @@ export const trainNeuralNetwork = ({ state, net }) => {
     });
   }
 
-  net.train(networkTrainData, { log: true });
+  net.train(networkTrainData, {
+    log: true,
+    errorThresh: 0.005,
+    learningRate: 0.01,
+    iterations: 100000,
+  });
 }

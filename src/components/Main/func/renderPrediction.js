@@ -38,10 +38,18 @@ export const renderPrediction = async ({ video, canvas, ctx, model, state, net }
 
       if (state.recordingFaceOne) {
         state.faceOneData.push(landmarks);
+        if (state.faceOneData.length === 50) {
+          state.recordingFaceOne = false;
+          alert('Finished recording face one');
+        }
       }
 
       if (state.recordingFaceTwo) {
         state.faceTwoData.push(landmarks);
+        if (state.faceTwoData.length === 50) {
+          state.recordingFaceTwo = false;
+          alert('Finished recording face two');
+        }
       }
 
       if (state.recordingTestData) {
