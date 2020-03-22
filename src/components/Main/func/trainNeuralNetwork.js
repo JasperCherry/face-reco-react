@@ -2,7 +2,7 @@ import {
   getProportion1,
   getProportion2,
   getProportion3,
-} from './index';
+} from './getProportions';
 
 
 export const trainNeuralNetwork = ({ state, net }) => {

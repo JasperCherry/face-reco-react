@@ -5,6 +5,3 @@ export { getCtx } from './getCtx';
 export { wait } from './wait';
 export { recognizeCurrentFace } from './recognizeCurrentFace';
 export { trainNeuralNetwork } from './trainNeuralNetwork';
-export { getProportion1 } from './getProportion1';
-export { getProportion2 } from './getProportion2';
-export { getProportion3 } from './getProportion3';

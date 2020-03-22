@@ -1,1 +1,3 @@
-add 2 more proportions - eye to nose / eye to mouth - for both eyes
+add all to all algorithm
+
+play with network itself, add more layers
