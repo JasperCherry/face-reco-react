@@ -1,7 +1,0 @@
-add all to all algorithm
-
-play with network itself, add more layers
-
-
-
-do 50 pieces of data recorded
