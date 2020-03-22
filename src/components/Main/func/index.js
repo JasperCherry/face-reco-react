@@ -5,3 +5,4 @@ export { getCtx } from './getCtx';
 export { wait } from './wait';
 export { recognizeCurrentFace } from './recognizeCurrentFace';
 export { trainNeuralNetwork } from './trainNeuralNetwork';
+export { getProportions } from './getProportions';
