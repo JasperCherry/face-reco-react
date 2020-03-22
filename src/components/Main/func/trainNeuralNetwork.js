@@ -1,7 +1,7 @@
 import { getProportions } from './index';
 
 
-export const trainNeuralNetwork = ({ state, net }) => {
+export const trainNeuralNetwork = async ({ state, net, ref }) => {
   const { faceOneData, faceTwoData } = state;
   const networkTrainData = [];
 
@@ -19,10 +19,12 @@ export const trainNeuralNetwork = ({ state, net }) => {
     });
   }
 
-  net.train(networkTrainData, {
+  await net.train(networkTrainData, {
     log: true,
     errorThresh: 0.005,
     learningRate: 0.01,
     iterations: 100000,
   });
+
+  ref.setState({ canRecognize: true });
 }

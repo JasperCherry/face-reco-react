@@ -1,7 +1,7 @@
 import { recognizeCurrentFace } from './index';
 
 
-export const renderPrediction = async ({ video, canvas, ctx, model, state, net }) => {
+export const renderPrediction = async ({ video, canvas, ctx, model, state, net, ref }) => {
   const returnTensors = false;
   const flipHorizontal = true;
   const annotateBoxes = true;
@@ -53,12 +53,17 @@ export const renderPrediction = async ({ video, canvas, ctx, model, state, net }
       }
 
       if (state.recordingTestData) {
-        state.recordingTestData = false;
         state.testData = landmarks;
         recognizeCurrentFace({ state, net });
       }
     }
   }
 
-  requestAnimationFrame(() => renderPrediction({ video, canvas, ctx, model, state, net }));
+  if (!ref.state.canTrain) {
+    if (state.faceOneData.length === 50 && state.faceTwoData.length === 50) {
+      ref.setState({ canTrain: true });
+    }
+  }
+
+  requestAnimationFrame(() => renderPrediction({ video, canvas, ctx, model, state, net, ref }));
 };

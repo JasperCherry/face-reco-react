@@ -36,6 +36,15 @@ const state = {
 
 
 class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      canTrain: false,
+      canRecognize: false,
+    }
+  }
+
+
   componentDidMount = async () => {
     await tf.setBackend('webgl');
 
@@ -46,7 +55,9 @@ class Main extends Component {
 
     video.play();
 
-    renderPrediction({ video, canvas, ctx, model, state, net });
+    const ref = this;
+
+    renderPrediction({ video, canvas, ctx, model, state, net, ref });
   }
 
 
@@ -65,7 +76,10 @@ class Main extends Component {
     console.log({ faceOneData, faceTwoData });
   }
 
+
   render() {
+    const { canTrain, canRecognize } = this.state;
+
     return (
       <Layout>
         <Video />
@@ -76,19 +90,20 @@ class Main extends Component {
         </div>
         <div>
           <Button
-            style={{ background: 'red' }}
-            onClick={() => trainNeuralNetwork({ state, net })}
+            disabled={!canTrain}
+            style={{ background: canTrain ? 'green' : 'gray' }}
+            onClick={() => trainNeuralNetwork({ state, net, ref: this })}
           >
             {`Train Neural Network`}
           </Button>
           <Button
-            style={{ background: 'red' }}
-            onClick={() => {
-              state.recordingTestData = true; }
-            }
+            disabled={!canRecognize}
+            style={{ background: canRecognize ? 'green' : 'gray' }}
+            onClick={() => { state.recordingTestData = true; }}
           >
             {`Recognize current face`}
           </Button>
+          <h1 id='recognizedFace'>Recognized face: none</h1>
         </div>
       </Layout>
     );
