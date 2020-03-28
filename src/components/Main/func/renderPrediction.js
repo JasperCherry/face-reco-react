@@ -38,7 +38,7 @@ export const renderPrediction = async ({ video, canvas, ctx, model, state, net, 
 
       if (state.recordingFaceOne) {
         state.faceOneData.push(landmarks);
-        if (state.faceOneData.length === 50) {
+        if (state.faceOneData.length === 100) {
           state.recordingFaceOne = false;
           alert('Finished recording face one');
         }
@@ -46,7 +46,7 @@ export const renderPrediction = async ({ video, canvas, ctx, model, state, net, 
 
       if (state.recordingFaceTwo) {
         state.faceTwoData.push(landmarks);
-        if (state.faceTwoData.length === 50) {
+        if (state.faceTwoData.length === 100) {
           state.recordingFaceTwo = false;
           alert('Finished recording face two');
         }
@@ -60,7 +60,7 @@ export const renderPrediction = async ({ video, canvas, ctx, model, state, net, 
   }
 
   if (!ref.state.canTrain) {
-    if (state.faceOneData.length === 50 && state.faceTwoData.length === 50) {
+    if (state.faceOneData.length === 100 && state.faceTwoData.length === 100) {
       ref.setState({ canTrain: true });
     }
   }
