@@ -21,7 +21,7 @@ export const getProportionsAll = (data) => {
           ) {
             proportions.push(dist2 / dist1);
           } else if (
-            dist2 < dist1
+            dist1 < dist2
             && dist2 !== 0
             && (dist1 / dist2) !== 1
             && (dist1 / dist2) !== 0
