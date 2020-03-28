@@ -13,9 +13,19 @@ export const getProportionsAll = (data) => {
             Math.pow((data[thirdPoint][0] - data[fourthPoint][0]), 2) + Math.pow((data[thirdPoint][1] - data[fourthPoint][1]), 2)
           );
 
-          if (dist1 >= dist2 && dist1 !== 0) {
+          if (
+            dist1 >= dist2
+            && dist1 !== 0
+            && (dist2 / dist1) !== 1
+            && (dist2 / dist1) !== 0
+          ) {
             proportions.push(dist2 / dist1);
-          } else if (dist2 < dist1 && dist2 !== 0) {
+          } else if (
+            dist2 < dist1
+            && dist2 !== 0
+            && (dist1 / dist2) !== 1
+            && (dist1 / dist2) !== 0
+          ) {
             proportions.push(dist1 / dist2);
           }
         }

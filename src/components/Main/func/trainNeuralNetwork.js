@@ -21,8 +21,8 @@ export const trainNeuralNetwork = async ({ state, net, ref }) => {
 
   await net.train(networkTrainData, {
     log: true,
-    errorThresh: 0.01,
-    learningRate: 0.001,
+    errorThresh: 0.001,
+    learningRate: 0.01,
     iterations: 100000,
   });
 
