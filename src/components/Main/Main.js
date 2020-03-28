@@ -26,11 +26,11 @@ const net = new brain.NeuralNetwork(config);
 
 
 const state = {
-  faceOneData: [],
-  faceTwoData: [],
+  poseOneData: [],
+  poseTwoData: [],
   testData: null,
-  recordingFaceOne: false,
-  recordingFaceTwo: false,
+  recordingPoseOne: false,
+  recordingPoseTwo: false,
   recordingTestData: false,
 }
 
@@ -61,19 +61,19 @@ class Main extends Component {
   }
 
 
-  recordFaceOneData = async () => {
-    state.recordingFaceOne = true;
+  recordPoseOneData = async () => {
+    state.recordingPoseOne = true;
   }
 
 
-  recordFaceTwoData = async () => {
-    state.recordingFaceTwo = true;
+  recordPoseTwoData = async () => {
+    state.recordingPoseTwo = true;
   }
 
 
   showRecordedData = () => {
-    const { faceOneData, faceTwoData } = state;
-    console.log({ faceOneData, faceTwoData });
+    const { poseOneData, poseTwoData } = state;
+    console.log({ poseOneData, poseTwoData });
   }
 
 
@@ -84,8 +84,8 @@ class Main extends Component {
       <Layout>
         <Video />
         <div>
-          <Button onClick={this.recordFaceOneData}>{`Record face One`}</Button>
-          <Button onClick={this.recordFaceTwoData}>{`Record face Two`}</Button>
+          <Button onClick={this.recordPoseOneData}>{`Record pose one`}</Button>
+          <Button onClick={this.recordPoseTwoData}>{`Record pose two`}</Button>
           <Button onClick={this.showRecordedData}>{`Show recorded data`}</Button>
         </div>
         <div>
@@ -101,9 +101,9 @@ class Main extends Component {
             style={{ background: canRecognize ? 'green' : 'gray' }}
             onClick={() => { state.recordingTestData = true; }}
           >
-            {`Recognize current face`}
+            {`Recognize current pose`}
           </Button>
-          <h1 id='recognizedFace'>Recognized face: none</h1>
+          <h1 id='recognizedPose'>Recognized pose: none</h1>
         </div>
       </Layout>
     );

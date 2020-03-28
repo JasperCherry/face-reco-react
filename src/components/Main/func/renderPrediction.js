@@ -1,4 +1,4 @@
-import { recognizeCurrentFace } from './index';
+import { recognizeCurrentPose } from './index';
 
 
 export const renderPrediction = async ({ video, canvas, ctx, model, state, net, ref }) => {
@@ -36,31 +36,31 @@ export const renderPrediction = async ({ video, canvas, ctx, model, state, net, 
         }
       }
 
-      if (state.recordingFaceOne) {
-        state.faceOneData.push(landmarks);
-        if (state.faceOneData.length === 100) {
-          state.recordingFaceOne = false;
-          alert('Finished recording face one');
+      if (state.recordingPoseOne) {
+        state.poseOneData.push(landmarks);
+        if (state.poseOneData.length === 30) {
+          state.recordingPoseOne = false;
+          alert('Finished recording pose one');
         }
       }
 
-      if (state.recordingFaceTwo) {
-        state.faceTwoData.push(landmarks);
-        if (state.faceTwoData.length === 100) {
-          state.recordingFaceTwo = false;
-          alert('Finished recording face two');
+      if (state.recordingPoseTwo) {
+        state.poseTwoData.push(landmarks);
+        if (state.poseTwoData.length === 30) {
+          state.recordingPoseTwo = false;
+          alert('Finished recording pose two');
         }
       }
 
       if (state.recordingTestData) {
         state.testData = landmarks;
-        recognizeCurrentFace({ state, net });
+        recognizeCurrentPose({ state, net });
       }
     }
   }
 
   if (!ref.state.canTrain) {
-    if (state.faceOneData.length === 100 && state.faceTwoData.length === 100) {
+    if (state.poseOneData.length === 30 && state.poseTwoData.length === 30) {
       ref.setState({ canTrain: true });
     }
   }
